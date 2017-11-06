@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Thumbnail} from 'react-bootstrap';
 
 class MoviePage extends Component {
     constructor(props){
@@ -30,7 +31,9 @@ class MoviePage extends Component {
     render (){
         const {movie} = this.state;
         console.log(movie);
+        const poster_url = 'https://image.tmdb.org/t/p/w500' + movie.poster_path;
         return(
+            <Thumbnail src={poster_url}>
             <div>
                 Movie Name: {movie.title}
                 <br/>
@@ -42,6 +45,7 @@ class MoviePage extends Component {
                 <br/>
                 Rating: {movie.vote_average}
             </div>
+            </Thumbnail>
         )
     }
 }

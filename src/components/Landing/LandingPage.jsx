@@ -44,7 +44,6 @@ class LandingPage extends Component {
     handleSubmit(event){
         event.preventDefault();
         const {searchYear, url} = this.state;
-        console.log("url is", this.state.url)
         if(searchYear != ''){
             const newUrl = url + '&primary_release_year=' + searchYear;
             this.setState({url : newUrl});
@@ -60,7 +59,6 @@ class LandingPage extends Component {
     }
 
     render(){
-        console.log("state is",this.state)
         return(
             <div className='container'>
              This is the LandingPage
