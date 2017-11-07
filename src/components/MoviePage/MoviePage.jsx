@@ -19,7 +19,7 @@ class MoviePage extends Component {
     fetchMovie(url){
         fetch(url, {method: 'GET'}).then(resp =>{
             if(!resp.ok){
-                console.log('error making your request')
+                return console.log('error making your request')
             } else {
                 return resp.json();
             }

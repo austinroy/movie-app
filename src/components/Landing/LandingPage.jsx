@@ -61,10 +61,10 @@ class LandingPage extends Component {
     render(){
         return(
             <div className='container'>
-             This is the LandingPage
              <form onSubmit={this.handleSubmit}>
                 <input type='search' placeholder='Enter movie year' onChange={this.handleChange}/>
              </form>
+             <br />
              {this.mapMoviesToThumb()}
             </div>
         )
