@@ -11,8 +11,6 @@ class MovieThumbNail extends Component {
             <div>
                 <a href={movie_url}>Movie: {movie.title}</a>
                 <br />
-                Summary: {movie.overview}
-                <br/>
                 Realeased on: {movie.release_date}
                 <br/>
                 Rating: {movie.vote_average}

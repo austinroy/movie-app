@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import MovieThumbaNail from './MovieThumbNail';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as actions from '../../redux/actions';
 
 class LandingPage extends Component {
     constructor(props){
@@ -9,32 +12,15 @@ class LandingPage extends Component {
             movies: [],
             searchYear: '',
         }
-        this.fetchMovies = this.fetchMovies.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this)
     } 
 
     componentDidMount(){
         const {url} = this.state;
-        this.fetchMovies(url);
+        this.props.fetchMovies(url);
     }
 
-    fetchMovies(url){
-        fetch(url, {method: 'GET'})
-        .then(resp =>{
-            if(!resp.ok){
-                console.log("Unable to fetch")
-            } else {
-                return resp.json()
-            }
-        }
-        ).then(json =>{
-            console.log(json);
-            const results = json.results;
-            this.setState({movies: results})
-        }
-        )
-    }
 
     handleChange(event){
         const year = event.target.value;
@@ -52,7 +38,7 @@ class LandingPage extends Component {
     }
 
     mapMoviesToThumb (){
-        const {movies} = this.state;
+        const {movies} = this.props;
         return movies.map((movie, index) => {
             return (<MovieThumbaNail key={index} movie={movie} />)
         })    
@@ -71,4 +57,12 @@ class LandingPage extends Component {
     }
 }
 
-export default LandingPage;
+const mapStateToProps = (state, ownProps) => ({
+    movies: state.movies
+})
+
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators(actions, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (LandingPage);

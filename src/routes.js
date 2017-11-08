@@ -7,8 +7,8 @@ import MoviePage from './components/MoviePage/MoviePage';
 const Routes = () => (
     <App>
     <Switch>
-        <Route path="/" component={LandingPage} />
-        <Route path="movie/:id" component={MoviePage} />
+        <Route exact path="/" component={LandingPage} />
+        <Route exact path="/movie/:id" component={MoviePage} />
     </Switch>
     </ App>
 )

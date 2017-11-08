@@ -10,7 +10,7 @@ class App extends Component {
         <Navbar inverse>
           <Navbar.Header>
             <Navbar.Brand>
-              Movie App
+              <a href="/">Movie App</a>
             </Navbar.Brand>
           </Navbar.Header>
           <Navbar.Collapse>
