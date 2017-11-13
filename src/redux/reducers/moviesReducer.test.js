@@ -1,14 +1,12 @@
-import {LandingPage} from './LandingPage';
-import { render, configure } from 'enzyme';
-import React, {Component} from 'react';
-import Adapter from 'enzyme-adapter-react-16';
+import moviesReducer from  './moviesReducer';
 
-configure({adapter: new Adapter()});
-
-function testSetup(){
-    const props = {
-        fetchMovies: jest.fn(),
-        movies: [
+describe("Single movie reducer",() =>{
+    it("Should return initial state",()=>{
+        const movies = []
+        expect(moviesReducer(undefined, {})).toEqual(movies)
+    })
+    it("should handle FETCH_SINGLE_MOVIE_SUCCESS", ()=>{
+        const movies = [
             {
             "vote_count": 8621,
             "id": 278,
@@ -396,22 +394,12 @@ function testSetup(){
             "release_date": "1997-07-12"
             }
             ]
-    }
+        
+        const actionDispatched  = {
+            type: 'FETCH_MOVIES_SUCCESS',
+            movies
+        }
 
-    const wrapper = render(<LandingPage {...props} />);
-
-    return {
-        wrapper
-    }
-}
-
-describe('Landing page',() =>{
-    beforeEach(()=>{
-         const fetchMovie = jest.fn().mockImplementation(()=>{
-             return this.setState({movie: movie})
-         });
-    });
-    it('Renders without crashing', () => {
-        const { wrapper } = testSetup();
-    });
+        expect(moviesReducer([] ,actionDispatched)).toEqual(movies)
+    })
 })

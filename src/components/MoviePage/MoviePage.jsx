@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from '../../redux/actions';
 
-class MoviePage extends Component {
+export class MoviePage extends Component {
     constructor(props){
         super(props);
         this.state ={
@@ -20,7 +20,6 @@ class MoviePage extends Component {
 
     render (){
         const {movie} = this.props;
-        console.log(movie);
         const poster_url = 'https://image.tmdb.org/t/p/w500' + movie.poster_path;
         return(
             <div className="container">

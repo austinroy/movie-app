@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from '../../redux/actions';
 
-class LandingPage extends Component {
+export class LandingPage extends Component {
     constructor(props){
         super(props);
         this.state = {

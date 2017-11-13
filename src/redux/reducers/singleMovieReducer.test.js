@@ -1,17 +1,12 @@
-import {MoviePage} from './MoviePage';
-import { render, configure } from 'enzyme';
-import React, {Component} from 'react';
-import Adapter from 'enzyme-adapter-react-16';
+import singleMovieReducer from  './singleMovieReducer';
 
-configure({adapter: new Adapter()});
-
-function testSetup(){
-    const props ={
-        fetchMovie: jest.fn(),
-        params : {
-            id: 372058
-        },
-        movie : {
+describe("Movies reducer",() =>{
+    it("Should return initial state",()=>{
+        const movie = {}
+        expect(singleMovieReducer(undefined, {})).toEqual(movie)
+    })
+    it("should handle FETCH_MOVIES_SUCCESS", ()=>{
+        const movie = {
             "adult": false,
             "backdrop_path": null,
             "belongs_to_collection": null,
@@ -57,27 +52,12 @@ function testSetup(){
             "vote_average": 6.5,
             "vote_count": 2
             }
-    };
+        
+        const actionDispatched  = {
+            type: 'FETCH_SINGLE_MOVIE_SUCCESS',
+            movie
+        }
 
-    const wrapper = render(<MoviePage {...props} />);
-
-    return {
-        props,
-        wrapper
-    }
-}
-
-describe('Movie page',() =>{
-    beforeEach(()=>{
-         const fetchMovie = jest.fn().mockImplementation(()=>{
-             return this.setState({movie: movie})
-         });
-    });
-    it('Renders without crashing', () => {
-        const { wrapper } = testSetup();
-    });
-    it('Have 4 page breaks', () => {
-        const { wrapper, props} = testSetup();
-        expect(wrapper.find('br')).toHaveLength(4);
-    });
+        expect(singleMovieReducer({} ,actionDispatched)).toEqual(movie)
+    })
 })
