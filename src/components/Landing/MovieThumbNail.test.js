@@ -78,9 +78,9 @@ describe('Movie Thumbnail',() =>{
         const { wrapper, props } = testSetup();
         expect(wrapper.find('div')).toHaveLength(1);
     });
-    it('Have 5 page breaks', () => {
+    it('Have 4 page breaks', () => {
         const { wrapper, props} = testSetup();
-        expect(wrapper.find('br')).toHaveLength(5);
+        expect(wrapper.find('br')).toHaveLength(4);
     });
     it('Has expected movie in props', () =>{
          const { wrapper, props} = testSetup();

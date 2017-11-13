@@ -14,7 +14,7 @@ export const fetchMoviesSuccess = (movies) => {
 
 
 export const fetchSingleMovie = (url) => dispatch => {
-    fetch(url, {method: 'GET'}).then(resp =>{
+    return fetch(url, {method: 'GET'}).then(resp =>{
         if(!resp.ok){
             return console.log('error making your request')
         } else {
@@ -26,7 +26,7 @@ export const fetchSingleMovie = (url) => dispatch => {
 }
 
 export const  fetchMovies = (url) => dispatch => {
-    fetch(url, {method: 'GET'})
+    return fetch(url, {method: 'GET'})
     .then(resp =>{
         if(!resp.ok){
             console.log("Unable to fetch")
@@ -35,7 +35,6 @@ export const  fetchMovies = (url) => dispatch => {
         }
     }
     ).then(json =>{
-        console.log(json);
         const results = json.results;
         return dispatch(fetchMoviesSuccess(results));
     }
